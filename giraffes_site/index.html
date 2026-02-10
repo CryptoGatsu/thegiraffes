@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>$GIRAFFES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cinzel', serif;
+      color: #eaeaea;
+      background: #0b0f14;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      height: 100vh;
+      background: url('giraffes-storm.png') center/cover no-repeat;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 4px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    section {
+      padding: 80px 12%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    a {
+      color: #9ad7ff;
+      text-decoration: none;
+    }
+
+    /* Rain */
+    .rain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+      background-size: 2px 20px;
+      animation: rain 0.25s linear infinite;
+      z-index: 3;
+    }
+
+    @keyframes rain {
+      from { background-position: 0 0; }
+      to { background-position: -10px 20px; }
+    }
+
+    /* Lightning */
+    .lightning {
+      position: fixed;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 4;
+      transition: opacity 0.1s;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      max-width: 600px;
+      margin: 50px auto;
+    }
+
+    .slideshow iframe {
+      width: 100%;
+      height: 520px;
+      border-radius: 12px;
+      display: none;
+      background: #000;
+    }
+
+    .slideshow iframe.active {
+      display: block;
+    }
+
+    footer {
+      padding: 60px;
+      text-align: center;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+<div class="rain"></div>
+<div class="lightning"></div>
+
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>THE GIRAFFES</h1>
+    <p>Calm in Chaos. Tall in the Storm.</p>
+    <p>
+      <a href="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo">View on DexScreener</a>
+    </p>
+  </div>
+</div>
+
+<section>
+  <h2>Why Giraffes Endure Storms</h2>
+  <p>Giraffes evolved to survive open plains where storms are unavoidable. Their height allows early awareness, their cardiovascular system handles pressure, and their instinct is calm observation rather than panic.</p>
+</section>
+
+<section>
+  <h2>Why They Don’t Lay Down</h2>
+  <p>Lying down makes giraffes vulnerable. Standing allows instant reaction. They conserve energy and remain ready — a rare survival strategy.</p>
+</section>
+
+<section>
+  <h2>How Giraffes Sleep</h2>
+  <p>Giraffes sleep as little as 20–30 minutes a day, often standing. Deep sleep is brief and risky, making them one of the lightest sleepers in nature.</p>
+</section>
+
+<section>
+  <h2>The Internet Discovered Giraffes</h2>
+  <div class="slideshow">
+    <iframe src="https://x.com/volcaholic1/status/2020786190866059309"></iframe>
+    <iframe src="https://x.com/crazyclipsonly/status/2021253201933078629"></iframe>
+    <iframe src="https://x.com/alifarhat79/status/2021210826376442020"></iframe>
+    <iframe src="https://x.com/i/trending/2021310463846515014"></iframe>
+  </div>
+</section>
+
+<footer>
+  <p>$GIRAFFES — Stand Tall.</p>
+</footer>
+
+<script>
+  // Lightning
+  function lightningFlash() {
+    const l = document.querySelector('.lightning');
+    l.style.opacity = Math.random() * 0.6 + 0.2;
+    setTimeout(() => l.style.opacity = 0, 120);
+  }
+  setInterval(() => {
+    if (Math.random() > 0.7) lightningFlash();
+  }, 3000);
+
+  // Slideshow
+  const slides = document.querySelectorAll('.slideshow iframe');
+  let index = 0;
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[i].classList.add('active');
+  }
+  showSlide(index);
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, 6000);
+</script>
+
+</body>
+</html>
