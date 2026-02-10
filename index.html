@@ -94,6 +94,37 @@ h1 {
   opacity: 0.7;
 }
 
+/* CONTRACT ADDRESS */
+.ca {
+  margin-top: 16px;
+  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.ca span {
+  opacity: 0.95;
+  word-break: break-all;
+}
+
+/* COPIED FEEDBACK */
+.copied {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 130%;
+  font-size: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.copied.show {
+  opacity: 0.6;
+}
+
 /* RAIN */
 .rain {
   position: fixed;
@@ -162,6 +193,11 @@ h1 {
         X Community
       </a>
     </div>
+
+    <div class="ca" onclick="copyCA()">
+      CA: <span id="ca-text">GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump</span>
+      <div class="copied" id="copied">Copied</div>
+    </div>
   </div>
 </div>
 
@@ -172,10 +208,22 @@ function lightningFlash() {
   l.style.opacity = Math.random() * 0.6 + 0.2;
   setTimeout(() => l.style.opacity = 0, 120);
 }
-
 setInterval(() => {
   if (Math.random() > 0.7) lightningFlash();
 }, 3200);
+
+/* Copy CA */
+function copyCA() {
+  const text = document.getElementById('ca-text').innerText;
+  navigator.clipboard.writeText(text);
+
+  const copied = document.getElementById('copied');
+  copied.classList.add('show');
+
+  setTimeout(() => {
+    copied.classList.remove('show');
+  }, 900);
+}
 </script>
 
 </body>
