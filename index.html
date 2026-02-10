@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>The Giraffes</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <!-- Royal serif font -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
@@ -13,76 +13,81 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   font-family: 'Cormorant Garamond', serif;
-  color: #f1f1f1;
   background: #0b0f14;
+  color: #f1f1f1;
 }
 
 /* FULL CANVAS */
 .hero {
-  height: 100vh;
-  width: 100vw;
+  position: fixed;
+  inset: 0;
   background: url('giraffes-storm.png') center / cover no-repeat;
-  position: relative;
 }
 
-/* DARKEN OVERLAY */
+/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.62);
 }
 
-/* CONTENT */
+/* CENTERED CONTENT */
 .content {
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 6vw;
+  padding: min(8vh, 40px) 6vw;
+  box-sizing: border-box;
 }
 
 /* TITLE */
 h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
-  letter-spacing: 6px;
   margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
 }
 
 /* SLOGAN */
 .slogan {
-  margin-top: 16px;
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  letter-spacing: 1.5px;
+  margin-top: 12px;
+  font-size: clamp(1rem, 2.8vw, 1.5rem);
+  letter-spacing: 0.08em;
   opacity: 0.9;
 }
 
 /* DIVIDER */
 .divider {
-  width: 160px;
+  width: clamp(100px, 20vw, 160px);
   height: 1px;
   background: rgba(255,255,255,0.4);
-  margin: 28px 0;
+  margin: 22px 0;
 }
 
 /* LINKS */
 .links {
   display: flex;
-  gap: 36px;
-  margin-top: 10px;
+  gap: clamp(20px, 6vw, 40px);
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .links a {
-  text-decoration: none;
   color: #cfe9ff;
-  font-size: 1.05rem;
-  letter-spacing: 1.5px;
-  transition: opacity 0.2s ease;
+  text-decoration: none;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  letter-spacing: 0.12em;
+  transition: opacity 0.25s ease;
 }
 
 .links a:hover {
@@ -95,17 +100,17 @@ h1 {
   inset: 0;
   pointer-events: none;
   background-image: linear-gradient(
-    rgba(255,255,255,0.18) 1px,
+    rgba(255,255,255,0.16) 1px,
     transparent 1px
   );
   background-size: 2px 18px;
-  animation: rain 0.25s linear infinite;
+  animation: rain 0.28s linear infinite;
   z-index: 3;
 }
 
 @keyframes rain {
   from { background-position: 0 0; }
-  to { background-position: -10px 20px; }
+  to { background-position: -12px 22px; }
 }
 
 /* LIGHTNING */
@@ -117,6 +122,16 @@ h1 {
   pointer-events: none;
   z-index: 4;
   transition: opacity 0.1s;
+}
+
+/* MOBILE TUNING */
+@media (max-width: 480px) {
+  h1 {
+    letter-spacing: 0.25em;
+  }
+  .divider {
+    margin: 18px 0;
+  }
 }
 </style>
 </head>
@@ -157,9 +172,10 @@ function lightningFlash() {
   l.style.opacity = Math.random() * 0.6 + 0.2;
   setTimeout(() => l.style.opacity = 0, 120);
 }
+
 setInterval(() => {
   if (Math.random() > 0.7) lightningFlash();
-}, 3000);
+}, 3200);
 </script>
 
 </body>
