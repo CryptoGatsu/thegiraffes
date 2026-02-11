@@ -5,7 +5,7 @@
 <title>The Giraffes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 html { scroll-behavior:smooth; }
@@ -18,11 +18,10 @@ body {
   color:#f1f1f1;
 }
 
-/* Overlay */
 .overlay {
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
+  background:rgba(0,0,0,0.65);
   z-index:-1;
 }
 
@@ -48,7 +47,7 @@ body {
     0 2px 0 #999,
     0 4px 0 #888,
     0 6px 0 #777,
-    0 8px 15px rgba(0,0,0,0.8),
+    0 8px 15px rgba(0,0,0,0.85),
     0 0 25px rgba(255,255,255,0.15);
 }
 
@@ -113,10 +112,9 @@ body {
 
 /* SECTION */
 .section {
-  min-height:100vh;
   padding:100px 10%;
   backdrop-filter:blur(6px);
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.5);
   text-align:center;
 }
 
@@ -138,7 +136,7 @@ body {
 /* Square Chart */
 .chart {
   max-width:650px;
-  margin:0 auto 40px;
+  margin:0 auto 60px;
 }
 
 .chart iframe {
@@ -146,27 +144,29 @@ body {
   aspect-ratio:1/1;
 }
 
-/* Holders */
-.holders {
-  max-width:900px;
-  margin:40px auto;
-  max-height:420px;
-  overflow-y:auto;
-  border:1px solid rgba(255,255,255,0.2);
+/* Meme Section */
+.meme-section {
+  max-width:800px;
+  margin:0 auto;
+  line-height:1.6;
+  font-size:1.1rem;
+  text-align:left;
 }
 
-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:0.85rem;
+.meme-section h2 {
+  text-align:center;
+  font-family:'Cinzel', serif;
+  margin-bottom:30px;
 }
 
-th,td {
-  border-bottom:1px solid rgba(255,255,255,0.2);
-  padding:8px;
+.meme-section a {
+  color:#dbeeff;
+  text-decoration:none;
 }
 
-.whale { background:rgba(255,215,0,0.1); }
+.meme-section a:hover {
+  text-shadow:0 0 8px rgba(255,255,255,0.7);
+}
 
 /* Rain */
 .rain {
@@ -225,23 +225,37 @@ src="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo
 frameborder="0"></iframe>
 </div>
 
-<h2>Top 100 Holders</h2>
+<div class="meme-section">
+<h2>The Meme</h2>
 
-<div class="holders">
-<table>
-<thead>
-<tr><th>#</th><th>Wallet</th><th>Balance</th></tr>
-</thead>
-<tbody id="holderTable">
-<tr><td colspan="3">Loading...</td></tr>
-</tbody>
-</table>
+<p>
+Last Friday, a video of giraffes standing motionless in a violent thunderstorm began circulating across social media. 
+The towering animals — with nowhere to hide due to their height — remained calm as rain and lightning crashed around them.
+</p>
+
+<p>
+Viewers resonated deeply with the imagery. Many described it as a metaphor for resilience: standing tall when life has nowhere to miss you. 
+Others saw vulnerability and strength combined — majestic animals exposed to nature’s fury, yet unshaken.
+</p>
+
+<p>
+The clip quickly spread across X and other platforms, generating millions of views and thousands of comments. 
+The symbolism was clear: endurance, unity, and bravery in chaos.
+</p>
+
+<p><strong>Viral Posts:</strong></p>
+
+<p>
+🔗 <a href="https://x.com/pubity/status/2021285719180710035" target="_blank">Watch on X (Pubity)</a><br>
+🔗 <a href="https://x.com/ferozwala/status/2021159796410548615" target="_blank">Watch on X</a><br>
+🔗 <a href="https://x.com/volcaholic1/status/2020786190866059309" target="_blank">Watch on X</a>
+</p>
+
 </div>
 
 </section>
 
 <script>
-/* Copy */
 function copyCA(){
   const text=document.getElementById("ca-text").innerText;
   navigator.clipboard.writeText(text);
@@ -250,7 +264,6 @@ function copyCA(){
   setTimeout(()=>copied.classList.remove("show"),800);
 }
 
-/* Market */
 async function market(){
   const res=await fetch("https://api.dexscreener.com/latest/dex/pairs/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo");
   const data=await res.json();
@@ -260,50 +273,8 @@ async function market(){
   document.getElementById("vol").innerText="$"+Number(p.volume.h24).toLocaleString();
 }
 
-/* HOLDERS WORKING METHOD */
-const MINT="GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump";
-
-async function holders(){
-  try{
-    const res=await fetch("https://api.mainnet-beta.solana.com",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body:JSON.stringify({
-        jsonrpc:"2.0",
-        id:1,
-        method:"getTokenLargestAccounts",
-        params:[MINT]
-      })
-    });
-
-    const data=await res.json();
-    const list=data.result.value;
-
-    const table=document.getElementById("holderTable");
-    table.innerHTML="";
-
-    list.forEach((h,i)=>{
-      const row=document.createElement("tr");
-      if(i<3)row.classList.add("whale");
-
-      row.innerHTML=`
-        <td>${i+1}</td>
-        <td>${h.address.slice(0,6)}...${h.address.slice(-4)}</td>
-        <td>${Number(h.amount).toLocaleString()}</td>
-      `;
-      table.appendChild(row);
-    });
-
-  }catch{
-    document.getElementById("holderTable").innerHTML=
-      "<tr><td colspan='3'>Failed to load holders</td></tr>";
-  }
-}
-
 market();
-holders();
 setInterval(market,30000);
-setInterval(holders,60000);
 </script>
 
 </body>
