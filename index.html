@@ -18,7 +18,7 @@ body {
   color:#f1f1f1;
 }
 
-/* Dark overlay */
+/* Overlay */
 .overlay {
   position:fixed;
   inset:0;
@@ -34,46 +34,22 @@ body {
   justify-content:center;
   align-items:center;
   text-align:center;
-  position:relative;
   padding:0 20px;
+  position:relative;
 }
 
-/* 3D Engraved Title */
 .hero h1 {
   font-family:'Cinzel', serif;
   font-size:clamp(3rem,8vw,6rem);
-  letter-spacing:0.4em;
+  letter-spacing:0.35em;
   text-transform:uppercase;
   color:#dcdcdc;
-
   text-shadow:
-    0 1px 0 #999,
-    0 2px 0 #888,
-    0 3px 0 #777,
-    0 4px 0 #666,
-    0 5px 10px rgba(0,0,0,0.8),
-    0 0 25px rgba(255,255,255,0.15);
-
-  animation:glowPulse 4s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%,100% { text-shadow:
-    0 1px 0 #999,
-    0 2px 0 #888,
-    0 3px 0 #777,
-    0 4px 0 #666,
-    0 5px 10px rgba(0,0,0,0.8),
-    0 0 20px rgba(255,255,255,0.1);
-  }
-  50% { text-shadow:
-    0 1px 0 #bbb,
-    0 2px 0 #aaa,
-    0 3px 0 #999,
+    0 2px 0 #999,
     0 4px 0 #888,
-    0 5px 20px rgba(0,0,0,0.9),
-    0 0 40px rgba(255,255,255,0.25);
-  }
+    0 6px 0 #777,
+    0 8px 15px rgba(0,0,0,0.8),
+    0 0 25px rgba(255,255,255,0.15);
 }
 
 .subtitle {
@@ -83,11 +59,10 @@ body {
   opacity:0.85;
 }
 
-/* Links */
 .links {
-  margin-top:35px;
+  margin-top:30px;
   display:flex;
-  gap:35px;
+  gap:30px;
   flex-wrap:wrap;
   justify-content:center;
 }
@@ -103,9 +78,8 @@ body {
   text-shadow:0 0 10px rgba(255,255,255,0.7);
 }
 
-/* Contract */
 .ca {
-  margin-top:20px;
+  margin-top:18px;
   font-size:0.85rem;
   cursor:pointer;
   opacity:0.8;
@@ -124,7 +98,6 @@ body {
 
 .copied.show { opacity:0.8; }
 
-/* Arrow */
 .arrow {
   position:absolute;
   bottom:40px;
@@ -147,6 +120,7 @@ body {
   text-align:center;
 }
 
+/* Stats */
 .stats {
   display:flex;
   justify-content:center;
@@ -161,8 +135,18 @@ body {
   min-width:160px;
 }
 
-.chart iframe { height:350px; }
+/* Square Chart */
+.chart {
+  max-width:650px;
+  margin:0 auto 40px;
+}
 
+.chart iframe {
+  width:100%;
+  aspect-ratio:1/1;
+}
+
+/* Holders */
 .holders {
   max-width:900px;
   margin:40px auto;
@@ -198,17 +182,6 @@ th,td {
   from{background-position:0 0;}
   to{background-position:-12px 22px;}
 }
-
-/* Lightning */
-.lightning {
-  position:fixed;
-  inset:0;
-  background:white;
-  opacity:0;
-  pointer-events:none;
-  z-index:4;
-  transition:opacity 0.1s;
-}
 </style>
 </head>
 
@@ -216,12 +189,11 @@ th,td {
 
 <div class="overlay"></div>
 <div class="rain"></div>
-<div class="lightning"></div>
 
 <section class="hero">
 
-<h1>BRAVE THE STORM</h1>
-<div class="subtitle">The Giraffes</div>
+<h1>THE GIRAFFES</h1>
+<div class="subtitle">Together We Will Endure</div>
 
 <div class="links">
   <a href="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo" target="_blank">DexScreener</a>
@@ -250,10 +222,10 @@ th,td {
 <div class="chart">
 <iframe 
 src="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo?embed=1&theme=dark"
-width="100%" frameborder="0"></iframe>
+frameborder="0"></iframe>
 </div>
 
-<h2 style="margin-top:60px;">Top 100 Holders</h2>
+<h2>Top 100 Holders</h2>
 
 <div class="holders">
 <table>
@@ -269,15 +241,7 @@ width="100%" frameborder="0"></iframe>
 </section>
 
 <script>
-/* Lightning */
-function flash(){
-  const l=document.querySelector('.lightning');
-  l.style.opacity=Math.random()*0.6+0.2;
-  setTimeout(()=>l.style.opacity=0,120);
-}
-setInterval(()=>{if(Math.random()>0.7)flash();},3000);
-
-/* Copy CA */
+/* Copy */
 function copyCA(){
   const text=document.getElementById("ca-text").innerText;
   navigator.clipboard.writeText(text);
@@ -296,32 +260,40 @@ async function market(){
   document.getElementById("vol").innerText="$"+Number(p.volume.h24).toLocaleString();
 }
 
-/* Holders */
-const HELIUS="eb0c5124-b49d-40e6-82c8-252febb271b0";
+/* HOLDERS WORKING METHOD */
 const MINT="GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump";
 
 async function holders(){
   try{
-    const res=await fetch(`https://api.helius.xyz/v0/token/holders?api-key=${HELIUS}&mint=${MINT}&limit=100`);
+    const res=await fetch("https://api.mainnet-beta.solana.com",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({
+        jsonrpc:"2.0",
+        id:1,
+        method:"getTokenLargestAccounts",
+        params:[MINT]
+      })
+    });
+
     const data=await res.json();
-    const list=data.holders||[];
+    const list=data.result.value;
 
     const table=document.getElementById("holderTable");
     table.innerHTML="";
 
     list.forEach((h,i)=>{
       const row=document.createElement("tr");
-      if(i<5)row.classList.add("whale");
+      if(i<3)row.classList.add("whale");
 
       row.innerHTML=`
         <td>${i+1}</td>
-        <td><a href="https://solscan.io/account/${h.owner}" target="_blank">
-        ${h.owner.slice(0,6)}...${h.owner.slice(-4)}
-        </a></td>
+        <td>${h.address.slice(0,6)}...${h.address.slice(-4)}</td>
         <td>${Number(h.amount).toLocaleString()}</td>
       `;
       table.appendChild(row);
     });
+
   }catch{
     document.getElementById("holderTable").innerHTML=
       "<tr><td colspan='3'>Failed to load holders</td></tr>";
