@@ -1,156 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <title>The Giraffes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
-  background: #0b0f14;
+  background: url('giraffes-storm.png') center top / cover no-repeat fixed;
+  background-color: #0b0f14;
   color: #f1f1f1;
+}
+
+/* GLOBAL OVERLAY */
+.global-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background: url('giraffes-storm.png') center / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   position: relative;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
 }
 
-.overlay {
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.65);
+h1 {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  letter-spacing: 0.35em;
+  margin: 0;
 }
 
-.content { position:relative; z-index:2; }
-
-h1 { letter-spacing:0.35em; font-size:clamp(2rem,6vw,4.5rem); }
+.slogan {
+  margin-top: 10px;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.1em;
+}
 
 .arrow {
-  position:absolute;
-  bottom:30px;
-  font-size:2rem;
-  cursor:pointer;
-  animation:bounce 1.8s infinite;
+  position: absolute;
+  bottom: 40px;
+  font-size: 2rem;
+  cursor: pointer;
+  animation: bounce 1.8s infinite;
 }
 
 @keyframes bounce {
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(10px);}
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
 }
 
 /* SECTION */
 .section {
-  min-height:100vh;
-  padding:80px 10%;
-  text-align:center;
+  min-height: 100vh;
+  padding: 100px 10%;
+  backdrop-filter: blur(6px);
+  background: rgba(0,0,0,0.45);
+  text-align: center;
 }
 
+/* MARKET STATS */
 .stats {
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  flex-wrap:wrap;
-  margin-bottom:40px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
 }
 
 .stat-box {
-  border:1px solid rgba(255,255,255,0.3);
-  padding:20px 30px;
-  min-width:160px;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 20px 30px;
+  min-width: 160px;
+  transition: transform 0.3s ease;
 }
 
+.stat-box:hover {
+  transform: translateY(-5px);
+}
+
+/* CHART */
 .chart-container {
-  max-width:900px;
-  margin:0 auto 40px;
+  max-width: 900px;
+  margin: 0 auto 40px;
 }
 
+/* SWAP BUTTON */
 .swap-button {
-  display:inline-block;
-  padding:14px 28px;
-  border:1px solid rgba(255,255,255,0.5);
-  text-decoration:none;
-  color:#fff;
-  margin-top:20px;
+  display: inline-block;
+  padding: 14px 28px;
+  border: 1px solid rgba(255,255,255,0.5);
+  text-decoration: none;
+  color: #fff;
+  margin-top: 20px;
+  transition: background 0.3s ease;
 }
 
+.swap-button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* HOLDERS TABLE */
 table {
-  width:100%;
-  max-width:1000px;
-  margin:40px auto;
-  border-collapse:collapse;
-  font-size:0.85rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 50px auto;
+  border-collapse: collapse;
+  font-size: 0.85rem;
 }
 
 th, td {
-  border-bottom:1px solid rgba(255,255,255,0.2);
-  padding:8px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding: 8px;
 }
 
-th { letter-spacing:0.1em; }
+th {
+  letter-spacing: 0.1em;
+}
 
 .whale-top {
-  background:rgba(255,215,0,0.08);
+  background: rgba(255,215,0,0.08);
 }
 
 .whale-major {
-  background:rgba(255,140,0,0.06);
+  background: rgba(255,140,0,0.06);
 }
 
-/* Rain */
+/* RAIN */
 .rain {
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:linear-gradient(rgba(255,255,255,0.15) 1px,transparent 1px);
-  background-size:2px 18px;
-  animation:rain 0.3s linear infinite;
-  z-index:3;
-}
-@keyframes rain {
-  from{background-position:0 0;}
-  to{background-position:-12px 22px;}
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 2px 18px;
+  animation: rain 0.3s linear infinite;
+  z-index: 3;
 }
 
+@keyframes rain {
+  from { background-position: 0 0; }
+  to { background-position: -12px 22px; }
+}
+
+/* LIGHTNING */
 .lightning {
-  position:fixed;
-  inset:0;
-  background:white;
-  opacity:0;
-  pointer-events:none;
-  z-index:4;
-  transition:opacity 0.1s;
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 4;
+  transition: opacity 0.1s;
 }
 </style>
 </head>
 
 <body>
 
+<div class="global-overlay"></div>
 <div class="rain"></div>
 <div class="lightning"></div>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="overlay"></div>
-  <div class="content">
+  <div>
     <h1>THE GIRAFFES</h1>
-    <div>Together we will Endure</div>
+    <div class="slogan">Together we will Endure</div>
   </div>
   <div class="arrow" onclick="document.getElementById('market').scrollIntoView()">↓</div>
 </section>
 
+<!-- MARKET SECTION -->
 <section class="section" id="market">
+
   <h2>$GIRAFFES MARKET</h2>
 
   <div class="stats">
@@ -181,7 +216,7 @@ th { letter-spacing:0.1em; }
      Swap SOL → $GIRAFFES
   </a>
 
-  <h2 style="margin-top:60px;">Top 100 Holders</h2>
+  <h2 style="margin-top:70px;">Top 100 Holders</h2>
 
   <table>
     <thead>
@@ -208,7 +243,7 @@ function lightningFlash() {
 }
 setInterval(()=>{ if(Math.random()>0.7) lightningFlash(); },3000);
 
-/* MARKET DATA */
+/* Market Data */
 async function fetchMarketData() {
   const res = await fetch("https://api.dexscreener.com/latest/dex/pairs/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo");
   const data = await res.json();
@@ -216,15 +251,13 @@ async function fetchMarketData() {
 
   document.getElementById("marketcap").innerText =
     "$" + Number(pair.fdv).toLocaleString();
-
   document.getElementById("liquidity").innerText =
     "$" + Number(pair.liquidity.usd).toLocaleString();
-
   document.getElementById("volume").innerText =
     "$" + Number(pair.volume.h24).toLocaleString();
 }
 
-/* HOLDERS */
+/* Holders */
 const TOKEN_MINT = "GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump";
 const HELIUS_API_KEY = "eb0c5124-b49d-40e6-82c8-252febb271b0";
 
@@ -274,10 +307,8 @@ async function fetchHolders() {
 fetchMarketData();
 fetchHolders();
 
-/* AUTO REFRESH */
 setInterval(fetchMarketData, 30000);
 setInterval(fetchHolders, 30000);
-
 </script>
 
 </body>
