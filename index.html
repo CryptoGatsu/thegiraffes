@@ -9,7 +9,6 @@
 
 <style>
 html { scroll-behavior:smooth; }
-
 body {
   margin:0;
   font-family:'Cormorant Garamond', serif;
@@ -17,7 +16,6 @@ body {
   background-color:#0b0f14;
   color:#f1f1f1;
 }
-
 .overlay {
   position:fixed;
   inset:0;
@@ -36,7 +34,6 @@ body {
   padding:0 20px;
   position:relative;
 }
-
 .hero h1 {
   font-family:'Cinzel', serif;
   font-size:clamp(3rem,8vw,6rem);
@@ -44,20 +41,18 @@ body {
   text-transform:uppercase;
   color:#dcdcdc;
   text-shadow:
-    0 2px 0 #999,
-    0 4px 0 #888,
-    0 6px 0 #777,
-    0 8px 15px rgba(0,0,0,0.85),
-    0 0 25px rgba(255,255,255,0.15);
+    0 2px 0 #aaa,
+    0 4px 0 #999,
+    0 6px 0 #888,
+    0 8px 20px rgba(0,0,0,0.85),
+    0 0 30px rgba(255,255,255,0.15);
 }
-
 .subtitle {
   margin-top:15px;
   font-size:clamp(1rem,2.5vw,1.4rem);
   letter-spacing:0.15em;
   opacity:0.85;
 }
-
 .links {
   margin-top:30px;
   display:flex;
@@ -65,18 +60,15 @@ body {
   flex-wrap:wrap;
   justify-content:center;
 }
-
 .links a {
   color:#dbeeff;
   text-decoration:none;
   letter-spacing:0.1em;
   transition:0.3s;
 }
-
 .links a:hover {
   text-shadow:0 0 10px rgba(255,255,255,0.7);
 }
-
 .ca {
   margin-top:18px;
   font-size:0.85rem;
@@ -84,7 +76,6 @@ body {
   opacity:0.8;
   position:relative;
 }
-
 .copied {
   position:absolute;
   top:120%;
@@ -94,7 +85,6 @@ body {
   opacity:0;
   transition:0.3s;
 }
-
 .copied.show { opacity:0.8; }
 
 .arrow {
@@ -104,26 +94,24 @@ body {
   cursor:pointer;
   animation:bounce 1.8s infinite;
 }
-
 @keyframes bounce {
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(10px);}
 }
 
-/* SECTION STYLES */
+/* SECTION */
 .section {
   padding:100px 10%;
   backdrop-filter:blur(6px);
   background:rgba(0,0,0,0.55);
   text-align:center;
 }
-
 .section h2 {
   font-family:'Cinzel', serif;
   margin-bottom:30px;
 }
 
-/* MARKET STATS */
+/* MARKET */
 .stats {
   display:flex;
   justify-content:center;
@@ -131,38 +119,32 @@ body {
   flex-wrap:wrap;
   margin-bottom:40px;
 }
-
 .stat {
   border:1px solid rgba(255,255,255,0.3);
   padding:20px 30px;
   min-width:160px;
 }
-
-/* SQUARE CHART */
 .chart {
   max-width:650px;
   margin:0 auto 60px;
 }
-
 .chart iframe {
   width:100%;
   aspect-ratio:1/1;
 }
 
-/* MEME SECTION */
+/* MEME */
 .meme-section {
   max-width:800px;
   margin:0 auto;
   line-height:1.7;
   font-size:1.1rem;
-  text-align:center;
 }
 
-/* JOIN SECTION */
+/* JOIN */
 .join-section {
   margin-top:60px;
 }
-
 .join-buttons {
   margin-top:30px;
   display:flex;
@@ -170,7 +152,6 @@ body {
   flex-wrap:wrap;
   justify-content:center;
 }
-
 .btn {
   padding:14px 28px;
   border:1px solid rgba(255,255,255,0.6);
@@ -179,7 +160,6 @@ body {
   letter-spacing:0.1em;
   transition:0.3s;
 }
-
 .btn:hover {
   background:rgba(255,255,255,0.1);
   text-shadow:0 0 10px rgba(255,255,255,0.6);
@@ -244,21 +224,20 @@ frameborder="0"></iframe>
 <h2>The Meme</h2>
 
 <p>
-On Feb 6th, 2026, a dramatic video showing giraffes standing tall in a powerful thunderstorm at Kenya’s Maasai Mara went viral across X and other platforms. 
-The towering animals had no shelter from rain, wind, and lightning — yet remained calm and still. :contentReference[oaicite:1]{index=1}
+On Feb 6th, 2026, a dramatic video of giraffes standing tall in a thunderstorm
+went viral across X. With nowhere to hide, they endured rain and lightning calmly.
 </p>
 
 <p>
-Viewers were struck by resilience and vulnerability combined, sparking comments about enduring life’s storms — and inspiring a lasting metaphor of strength and unity behind $GIRAFFES. :contentReference[oaicite:2]{index=2}
+People resonated with the symbolism: strength without panic.
+Standing tall when the storm has nowhere to miss you.
 </p>
 
-<!-- EMBEDDED VIRAL X POST -->
-<div style="margin:60px auto; max-width:550px;">
-  <blockquote class="twitter-tweet" data-theme="dark">
-    <a href="https://x.com/i/trending/2020597529230950485"></a>
-  </blockquote>
+<div style="margin:40px auto;">
+<a class="btn" href="https://x.com/i/trending/2020597529230950485?s=20" target="_blank">
+View Trending Post on X
+</a>
 </div>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </div>
 
@@ -303,7 +282,6 @@ async function market(){
   document.getElementById("liq").innerText="$"+Number(p.liquidity.usd).toLocaleString();
   document.getElementById("vol").innerText="$"+Number(p.volume.h24).toLocaleString();
 }
-
 market();
 setInterval(market,30000);
 </script>
