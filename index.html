@@ -9,6 +9,7 @@
 
 <style>
 html { scroll-behavior:smooth; }
+
 body {
   margin:0;
   font-family:'Cormorant Garamond', serif;
@@ -16,10 +17,11 @@ body {
   background-color:#0b0f14;
   color:#f1f1f1;
 }
+
 .overlay {
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.65);
+  background:rgba(0,0,0,0.7);
   z-index:-1;
 }
 
@@ -34,25 +36,28 @@ body {
   padding:0 20px;
   position:relative;
 }
+
 .hero h1 {
   font-family:'Cinzel', serif;
   font-size:clamp(3rem,8vw,6rem);
   letter-spacing:0.35em;
   text-transform:uppercase;
-  color:#dcdcdc;
+  color:#e5e5e5;
   text-shadow:
-    0 2px 0 #aaa,
-    0 4px 0 #999,
-    0 6px 0 #888,
-    0 8px 20px rgba(0,0,0,0.85),
-    0 0 30px rgba(255,255,255,0.15);
+    0 1px 0 #bbb,
+    0 3px 0 #999,
+    0 5px 0 #777,
+    0 10px 25px rgba(0,0,0,0.9),
+    inset 0 -3px 8px rgba(0,0,0,0.6);
 }
+
 .subtitle {
   margin-top:15px;
   font-size:clamp(1rem,2.5vw,1.4rem);
   letter-spacing:0.15em;
   opacity:0.85;
 }
+
 .links {
   margin-top:30px;
   display:flex;
@@ -60,15 +65,18 @@ body {
   flex-wrap:wrap;
   justify-content:center;
 }
+
 .links a {
   color:#dbeeff;
   text-decoration:none;
   letter-spacing:0.1em;
   transition:0.3s;
 }
+
 .links a:hover {
   text-shadow:0 0 10px rgba(255,255,255,0.7);
 }
+
 .ca {
   margin-top:18px;
   font-size:0.85rem;
@@ -76,6 +84,7 @@ body {
   opacity:0.8;
   position:relative;
 }
+
 .copied {
   position:absolute;
   top:120%;
@@ -85,7 +94,8 @@ body {
   opacity:0;
   transition:0.3s;
 }
-.copied.show { opacity:0.8; }
+
+.copied.show { opacity:0.9; }
 
 .arrow {
   position:absolute;
@@ -94,6 +104,7 @@ body {
   cursor:pointer;
   animation:bounce 1.8s infinite;
 }
+
 @keyframes bounce {
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(10px);}
@@ -102,10 +113,11 @@ body {
 /* SECTION */
 .section {
   padding:100px 10%;
-  backdrop-filter:blur(6px);
+  backdrop-filter:blur(8px);
   background:rgba(0,0,0,0.55);
   text-align:center;
 }
+
 .section h2 {
   font-family:'Cinzel', serif;
   margin-bottom:30px;
@@ -119,32 +131,49 @@ body {
   flex-wrap:wrap;
   margin-bottom:40px;
 }
+
 .stat {
   border:1px solid rgba(255,255,255,0.3);
   padding:20px 30px;
   min-width:160px;
 }
+
 .chart {
   max-width:650px;
   margin:0 auto 60px;
 }
+
 .chart iframe {
   width:100%;
   aspect-ratio:1/1;
+}
+
+/* VIDEO */
+.video-container {
+  max-width:800px;
+  margin:0 auto 60px;
+}
+
+.video-container iframe {
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
 }
 
 /* MEME */
 .meme-section {
   max-width:800px;
   margin:0 auto;
-  line-height:1.7;
-  font-size:1.1rem;
+  line-height:1.8;
+  font-size:1.15rem;
+  text-align:center;
 }
 
 /* JOIN */
 .join-section {
-  margin-top:60px;
+  margin-top:80px;
 }
+
 .join-buttons {
   margin-top:30px;
   display:flex;
@@ -152,6 +181,7 @@ body {
   flex-wrap:wrap;
   justify-content:center;
 }
+
 .btn {
   padding:14px 28px;
   border:1px solid rgba(255,255,255,0.6);
@@ -160,6 +190,7 @@ body {
   letter-spacing:0.1em;
   transition:0.3s;
 }
+
 .btn:hover {
   background:rgba(255,255,255,0.1);
   text-shadow:0 0 10px rgba(255,255,255,0.6);
@@ -175,13 +206,14 @@ body {
   animation:rain 0.3s linear infinite;
   z-index:3;
 }
+
 @keyframes rain {
   from{background-position:0 0;}
   to{background-position:-12px 22px;}
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <div class="overlay"></div>
@@ -216,26 +248,39 @@ body {
 
 <div class="chart">
 <iframe 
-src="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo?embed=1&theme=dark"
-frameborder="0"></iframe>
+src="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo?embed=1&theme=dark"></iframe>
+</div>
+
+<!-- ORIGINAL YOUTUBE VIDEO -->
+<div class="video-container">
+<h2>Original Storm Footage</h2>
+<iframe 
+src="https://www.youtube.com/embed/zX5cJJ8CyEw" 
+allowfullscreen>
+</iframe>
 </div>
 
 <div class="meme-section">
 <h2>The Meme</h2>
 
 <p>
-On Feb 6th, 2026, a dramatic video of giraffes standing tall in a thunderstorm
-went viral across X. With nowhere to hide, they endured rain and lightning calmly.
+On Feb 6th, 2026, a powerful video of giraffes standing calmly in the midst of a violent thunderstorm went viral across X and other platforms.
+With no cover or shelter, the towering animals endured heavy rain, wind, and lightning in complete stillness — a haunting and awe-inspiring scene.
 </p>
 
 <p>
-People resonated with the symbolism: strength without panic.
-Standing tall when the storm has nowhere to miss you.
+What captivated millions was not just the raw beauty of wildlife, but the emotional symbolism embedded in this moment. 
+Many viewers drew parallels between the giraffes’ calm posture amid chaos and their own struggles — moments when they have had to stand tall when life offered no place to hide.
+</p>
+
+<p>
+Across social media, people shared personal reflections, affirmations, art, poetry, and motivational messages inspired by this footage. 
+It became not just a viral clip, but a *cultural metaphor* for resilience, vulnerability, perseverance, and the quiet strength found in adversity.
 </p>
 
 <div style="margin:40px auto;">
 <a class="btn" href="https://x.com/i/trending/2020597529230950485?s=20" target="_blank">
-View Trending Post on X
+View Trending Discussion on X
 </a>
 </div>
 
@@ -282,6 +327,7 @@ async function market(){
   document.getElementById("liq").innerText="$"+Number(p.liquidity.usd).toLocaleString();
   document.getElementById("vol").innerText="$"+Number(p.volume.h24).toLocaleString();
 }
+
 market();
 setInterval(market,30000);
 </script>
