@@ -3,166 +3,135 @@
 <head>
 <meta charset="UTF-8" />
 <title>The Giraffes</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Royal serif font -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
-html, body {
+html { scroll-behavior: smooth; }
+
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
   font-family: 'Cormorant Garamond', serif;
   background: #0b0f14;
   color: #f1f1f1;
 }
 
-/* FULL CANVAS */
+/* HERO */
 .hero {
-  position: fixed;
-  inset: 0;
+  height: 100vh;
   background: url('giraffes-storm.png') center / cover no-repeat;
+  position: relative;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-/* OVERLAY */
 .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.62);
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
 }
 
-/* CENTERED CONTENT */
-.content {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: min(8vh, 40px) 6vw;
-  box-sizing: border-box;
+.content { position:relative; z-index:2; }
+
+h1 { letter-spacing:0.35em; font-size:clamp(2rem,6vw,4.5rem); }
+
+.arrow {
+  position:absolute;
+  bottom:30px;
+  font-size:2rem;
+  cursor:pointer;
+  animation:bounce 1.8s infinite;
 }
 
-/* TITLE */
-h1 {
-  margin: 0;
-  font-weight: 600;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  font-size: clamp(2.2rem, 6vw, 4.8rem);
+@keyframes bounce {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(10px);}
 }
 
-/* SLOGAN */
-.slogan {
-  margin-top: 12px;
-  font-size: clamp(1rem, 2.8vw, 1.5rem);
-  letter-spacing: 0.08em;
-  opacity: 0.9;
+/* SECTION */
+.section {
+  min-height:100vh;
+  padding:80px 10%;
+  text-align:center;
 }
 
-/* DIVIDER */
-.divider {
-  width: clamp(100px, 20vw, 160px);
-  height: 1px;
-  background: rgba(255,255,255,0.4);
-  margin: 22px 0;
+.stats {
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  flex-wrap:wrap;
+  margin-bottom:40px;
 }
 
-/* LINKS */
-.links {
-  display: flex;
-  gap: clamp(20px, 6vw, 40px);
-  flex-wrap: wrap;
-  justify-content: center;
+.stat-box {
+  border:1px solid rgba(255,255,255,0.3);
+  padding:20px 30px;
+  min-width:160px;
 }
 
-.links a {
-  color: #cfe9ff;
-  text-decoration: none;
-  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-  letter-spacing: 0.12em;
-  transition: opacity 0.25s ease;
+.chart-container {
+  max-width:900px;
+  margin:0 auto 40px;
 }
 
-.links a:hover {
-  opacity: 0.7;
+.swap-button {
+  display:inline-block;
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,0.5);
+  text-decoration:none;
+  color:#fff;
+  margin-top:20px;
 }
 
-/* CONTRACT ADDRESS */
-.ca {
-  margin-top: 16px;
-  font-size: clamp(0.75rem, 2.2vw, 0.9rem);
-  letter-spacing: 0.08em;
-  opacity: 0.75;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
+table {
+  width:100%;
+  max-width:1000px;
+  margin:40px auto;
+  border-collapse:collapse;
+  font-size:0.85rem;
 }
 
-.ca span {
-  opacity: 0.95;
-  word-break: break-all;
+th, td {
+  border-bottom:1px solid rgba(255,255,255,0.2);
+  padding:8px;
 }
 
-/* COPIED FEEDBACK */
-.copied {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 130%;
-  font-size: 0.7rem;
-  opacity: 0;
-  transition: opacity 0.4s ease;
+th { letter-spacing:0.1em; }
+
+.whale-top {
+  background:rgba(255,215,0,0.08);
 }
 
-.copied.show {
-  opacity: 0.6;
+.whale-major {
+  background:rgba(255,140,0,0.06);
 }
 
-/* RAIN */
+/* Rain */
 .rain {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(
-    rgba(255,255,255,0.16) 1px,
-    transparent 1px
-  );
-  background-size: 2px 18px;
-  animation: rain 0.28s linear infinite;
-  z-index: 3;
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.15) 1px,transparent 1px);
+  background-size:2px 18px;
+  animation:rain 0.3s linear infinite;
+  z-index:3;
 }
-
 @keyframes rain {
-  from { background-position: 0 0; }
-  to { background-position: -12px 22px; }
+  from{background-position:0 0;}
+  to{background-position:-12px 22px;}
 }
 
-/* LIGHTNING */
 .lightning {
-  position: fixed;
-  inset: 0;
-  background: white;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 4;
-  transition: opacity 0.1s;
-}
-
-/* MOBILE TUNING */
-@media (max-width: 480px) {
-  h1 {
-    letter-spacing: 0.25em;
-  }
-  .divider {
-    margin: 18px 0;
-  }
+  position:fixed;
+  inset:0;
+  background:white;
+  opacity:0;
+  pointer-events:none;
+  z-index:4;
+  transition:opacity 0.1s;
 }
 </style>
 </head>
@@ -172,34 +141,63 @@ h1 {
 <div class="rain"></div>
 <div class="lightning"></div>
 
-<div class="hero">
+<section class="hero">
   <div class="overlay"></div>
-
   <div class="content">
     <h1>THE GIRAFFES</h1>
+    <div>Together we will Endure</div>
+  </div>
+  <div class="arrow" onclick="document.getElementById('market').scrollIntoView()">↓</div>
+</section>
 
-    <div class="slogan">
-      Together we will Endure
+<section class="section" id="market">
+  <h2>$GIRAFFES MARKET</h2>
+
+  <div class="stats">
+    <div class="stat-box">
+      <div>Market Cap</div>
+      <div id="marketcap">Loading...</div>
     </div>
-
-    <div class="divider"></div>
-
-    <div class="links">
-      <a href="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo" target="_blank">
-        DexScreener
-      </a>
-
-      <a href="https://x.com/i/communities/2020913126619873543" target="_blank">
-        X Community
-      </a>
+    <div class="stat-box">
+      <div>Liquidity</div>
+      <div id="liquidity">Loading...</div>
     </div>
-
-    <div class="ca" onclick="copyCA()">
-      CA: <span id="ca-text">GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump</span>
-      <div class="copied" id="copied">Copied</div>
+    <div class="stat-box">
+      <div>24h Volume</div>
+      <div id="volume">Loading...</div>
     </div>
   </div>
-</div>
+
+  <div class="chart-container">
+    <iframe 
+      src="https://dexscreener.com/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo?embed=1&theme=dark"
+      width="100%" height="500" frameborder="0">
+    </iframe>
+  </div>
+
+  <a class="swap-button"
+     href="https://jup.ag/swap/SOL-GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump"
+     target="_blank">
+     Swap SOL → $GIRAFFES
+  </a>
+
+  <h2 style="margin-top:60px;">Top 100 Holders</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Wallet</th>
+        <th>Balance</th>
+        <th>% Supply</th>
+      </tr>
+    </thead>
+    <tbody id="holders-table">
+      <tr><td colspan="4">Loading holders...</td></tr>
+    </tbody>
+  </table>
+
+</section>
 
 <script>
 /* Lightning */
@@ -208,22 +206,78 @@ function lightningFlash() {
   l.style.opacity = Math.random() * 0.6 + 0.2;
   setTimeout(() => l.style.opacity = 0, 120);
 }
-setInterval(() => {
-  if (Math.random() > 0.7) lightningFlash();
-}, 3200);
+setInterval(()=>{ if(Math.random()>0.7) lightningFlash(); },3000);
 
-/* Copy CA */
-function copyCA() {
-  const text = document.getElementById('ca-text').innerText;
-  navigator.clipboard.writeText(text);
+/* MARKET DATA */
+async function fetchMarketData() {
+  const res = await fetch("https://api.dexscreener.com/latest/dex/pairs/solana/2zerywypw8kue4excbfweweql2ia1tzden6x9j2uu6yo");
+  const data = await res.json();
+  const pair = data.pair;
 
-  const copied = document.getElementById('copied');
-  copied.classList.add('show');
+  document.getElementById("marketcap").innerText =
+    "$" + Number(pair.fdv).toLocaleString();
 
-  setTimeout(() => {
-    copied.classList.remove('show');
-  }, 900);
+  document.getElementById("liquidity").innerText =
+    "$" + Number(pair.liquidity.usd).toLocaleString();
+
+  document.getElementById("volume").innerText =
+    "$" + Number(pair.volume.h24).toLocaleString();
 }
+
+/* HOLDERS */
+const TOKEN_MINT = "GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump";
+const HELIUS_API_KEY = "eb0c5124-b49d-40e6-82c8-252febb271b0";
+
+async function fetchHolders() {
+  const res = await fetch(`https://api.helius.xyz/v0/token-accounts?api-key=${HELIUS_API_KEY}`, {
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({
+      mint: TOKEN_MINT,
+      page: 1,
+      limit: 100
+    })
+  });
+
+  const data = await res.json();
+  const holders = data.token_accounts || [];
+
+  const totalSupply = holders.reduce((sum,h)=>sum+Number(h.amount),0);
+
+  const table = document.getElementById("holders-table");
+  table.innerHTML = "";
+
+  holders.forEach((holder,i)=>{
+    const balance = Number(holder.amount);
+    const percent = ((balance / totalSupply) * 100).toFixed(2);
+
+    const row = document.createElement("tr");
+
+    if(i < 5) row.classList.add("whale-top");
+    if(percent > 1) row.classList.add("whale-major");
+
+    row.innerHTML = `
+      <td>${i+1}</td>
+      <td>
+        <a href="https://solscan.io/account/${holder.owner}" target="_blank">
+        ${holder.owner.slice(0,6)}...${holder.owner.slice(-4)}
+        </a>
+      </td>
+      <td>${balance.toLocaleString()}</td>
+      <td>${percent}%</td>
+    `;
+
+    table.appendChild(row);
+  });
+}
+
+fetchMarketData();
+fetchHolders();
+
+/* AUTO REFRESH */
+setInterval(fetchMarketData, 30000);
+setInterval(fetchHolders, 30000);
+
 </script>
 
 </body>
