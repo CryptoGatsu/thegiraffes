@@ -114,8 +114,13 @@ body {
 .section {
   padding:100px 10%;
   backdrop-filter:blur(6px);
-  background:rgba(0,0,0,0.5);
+  background:rgba(0,0,0,0.55);
   text-align:center;
+}
+
+.section h2 {
+  font-family:'Cinzel', serif;
+  margin-bottom:30px;
 }
 
 /* Stats */
@@ -144,28 +149,40 @@ body {
   aspect-ratio:1/1;
 }
 
-/* Meme Section */
+/* Meme */
 .meme-section {
   max-width:800px;
   margin:0 auto;
-  line-height:1.6;
+  line-height:1.7;
   font-size:1.1rem;
   text-align:left;
 }
 
-.meme-section h2 {
-  text-align:center;
-  font-family:'Cinzel', serif;
-  margin-bottom:30px;
+/* Join Section */
+.join-section {
+  margin-top:60px;
 }
 
-.meme-section a {
-  color:#dbeeff;
+.join-buttons {
+  margin-top:30px;
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.btn {
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,0.6);
   text-decoration:none;
+  color:#fff;
+  letter-spacing:0.1em;
+  transition:0.3s;
 }
 
-.meme-section a:hover {
-  text-shadow:0 0 8px rgba(255,255,255,0.7);
+.btn:hover {
+  background:rgba(255,255,255,0.1);
+  text-shadow:0 0 10px rgba(255,255,255,0.6);
 }
 
 /* Rain */
@@ -191,7 +208,6 @@ body {
 <div class="rain"></div>
 
 <section class="hero">
-
 <h1>THE GIRAFFES</h1>
 <div class="subtitle">Together We Will Endure</div>
 
@@ -206,7 +222,6 @@ body {
 </div>
 
 <div class="arrow" onclick="document.getElementById('market').scrollIntoView()">↓</div>
-
 </section>
 
 <section class="section" id="market">
@@ -229,28 +244,40 @@ frameborder="0"></iframe>
 <h2>The Meme</h2>
 
 <p>
-Last Friday, a video of giraffes standing motionless in a violent thunderstorm began circulating across social media. 
-The towering animals — with nowhere to hide due to their height — remained calm as rain and lightning crashed around them.
+Last Friday, a powerful video of giraffes standing calmly in the middle of a thunderstorm spread across X and other platforms. 
+With nowhere to hide, the towering animals endured rain and lightning in complete stillness.
 </p>
 
 <p>
-Viewers resonated deeply with the imagery. Many described it as a metaphor for resilience: standing tall when life has nowhere to miss you. 
-Others saw vulnerability and strength combined — majestic animals exposed to nature’s fury, yet unshaken.
+The symbolism resonated deeply: strength without panic. Exposure without retreat. 
+Standing tall when the storm has nowhere to miss you.
 </p>
 
 <p>
-The clip quickly spread across X and other platforms, generating millions of views and thousands of comments. 
-The symbolism was clear: endurance, unity, and bravery in chaos.
+The internet turned it into a metaphor for resilience, unity, and endurance — and that spirit became the foundation of $GIRAFFES.
 </p>
+</div>
 
-<p><strong>Viral Posts:</strong></p>
+<div class="join-section">
+<h2>Join The Herd</h2>
 
-<p>
-🔗 <a href="https://x.com/pubity/status/2021285719180710035" target="_blank">Watch on X (Pubity)</a><br>
-🔗 <a href="https://x.com/ferozwala/status/2021159796410548615" target="_blank">Watch on X</a><br>
-🔗 <a href="https://x.com/volcaholic1/status/2020786190866059309" target="_blank">Watch on X</a>
-</p>
+<div class="join-buttons">
 
+<a class="btn" href="https://x.com/i/communities/2020913126619873543" target="_blank">
+Join X Community
+</a>
+
+<a class="btn" href="https://jup.ag/swap/SOL-GbqbsRyBHVPHEv7xLEsikXmdpPPiApLTJesDBbL5pump" target="_blank">
+Swap SOL → $GIRAFFES
+</a>
+
+<a class="btn" 
+href="https://twitter.com/intent/tweet?text=I%20ENDURE%20THE%20STORM%20JUST%20LIKE%20THE%20%24GIRAFFES%20%23GIRAFFES"
+target="_blank">
+Post On X
+</a>
+
+</div>
 </div>
 
 </section>
